@@ -125,3 +125,11 @@ function dealDeck(deck){
     deck = [playerDeck,computerDeck];
     return deck
 }
+
+function takeCards(targetDeck, handSize){
+    let hand = []
+    for (let i = 0; i < handSize; i++){
+        hand.push(targetDeck.pop)
+    }
+    return hand;
+}
