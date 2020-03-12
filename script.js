@@ -58,14 +58,14 @@ when game is exited, result should be displayed on screen in place of instructio
 function makeCard(rank, suit){
     
     if (rank > 10){
-        if( ank == 11){
-            name = "Jack " + suit;
+        if( rank == 11){
+            name = "Jack of " + suit;
         }
         else if (rank == 12){
-            name = "Queen " + suit;
+            name = "Queen of " + suit;
         }
         else if (rank == 13){
-            name = "King " + suit;
+            name = "King of " + suit;
         }
         else{
             name = "Ace of " + suit;
