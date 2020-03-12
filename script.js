@@ -105,3 +105,23 @@ function makeDeck(){
     }
     return deck;
 }
+
+function shuffleDeck(deck){
+    
+    let deck2 = [];
+    let iterationLength = deck.length;
+    for(let i = 0; i < iterationLength; i++){
+        let destination = Math.floor(Math.random()*(deck.length-1));
+        deck2.push[deck[destination]];
+    }
+    deck = deck2;
+    return deck;
+}
+function dealDeck(deck){
+
+    shuffleDeck(deck);
+    let playerDeck = deck.slice(0,26);
+    let computerDeck = deck.slice(26,52);
+    deck = [playerDeck,computerDeck];
+    return deck
+}
