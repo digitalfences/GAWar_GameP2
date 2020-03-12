@@ -1,0 +1,16 @@
+body{
+    display: flex;
+    flex-direction: column;
+    background-color: lemonchiffon;
+    align-items: center;
+}
+div :first-child{
+    width: 50%;
+}
+button{
+    width: 25%;
+    height: 20vh;
+}
+.button-friends{
+    display: flex;
+}

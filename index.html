@@ -3,7 +3,9 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
+    <link href="./style.css" rel="stylesheet">
     <title>Game of War</title>
+
   </head>
   <body>
     <h1>Welcome to the game of war!</p>
@@ -17,7 +19,12 @@
       4. First player to finish all their cards loses the game.<br>
       5. If a player finishes their cards during a war without having enough cards to finish the war then he loses immediately.<br>
     </p>
-    <button type ="button" onclick="clickHandler()">Start Button</button>
+    <div class="button-friends">
+      <button type ="button" onclick="clickHandler()">Start Button</button>
+      <button type ="button" onclick="clickHandler()">Set Player Name</button>
+      <button type ="button" onclick="clickHandler()">Set Computer Name</button>
+    </div>
+    
     
   </body>
   <script>
