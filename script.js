@@ -55,68 +55,66 @@ when game is exited, result should be displayed on screen in place of instructio
 
 
 */
-function makeCard(rank, suit){
-    
-    if (rank > 10){
-        if( rank == 11){
-            name = "Jack of " + suit;
-        }
-        else if (rank == 12){
+class Card{
+    constructor(rank, suit){
+        this.rank = rank,
+        this.suit = suit;
+        if (rank > 10){
+            if( rank == 11){
+                name = "Jack of " + suit;
+            }
+            else if (rank == 12){
             name = "Queen of " + suit;
-        }
-        else if (rank == 13){
-            name = "King of " + suit;
-        }
-        else{
-            name = "Ace of " + suit;
-        }
-    }
-    else{
-        name = rank + " of " + suit;
-    }
-    
-    return card = {
-        rank: rank,
-        name: name, 
-        suit: suit
-    }
-}
-/** make deck uses the inner function make rank to create every card of every suit from 2 - Ace */
-function makeDeck(){
-    let deck = [];
-    function makeRank(rank){
-        for (let i = 0; i < 4; i++){
-            if(i == 0){
-                deck.push(makeCard(rank, "Spades"));
-            }
-            else if(i == 1){
-                deck.push(makeCard(rank, "Hearts"));
-            }
-            else if(i == 2){
-                deck.push(makeCard(rank, "Diamonds"));
+         }
+            else if (rank == 13){
+                name = "King of " + suit;
             }
             else{
-                deck.push(makeCard(rank, "Clubs"));
+                name = "Ace of " + suit;
             }
         }
+        else{
+            name = rank + " of " + suit;
+        }
     }
-    for (let i = 2; i <= 14; i++){
-        makeRank(i);
-    }
-    return deck;
 }
 
-function shuffleDeck(deck){
-    
-    let deck2 = [];
-    let iterationLength = deck.length;
-    for(let i = 0; i < iterationLength; i++){
-        let destination = Math.floor(Math.random()*(deck.length-1));
-        deck2.push[deck[destination]];
+/** make deck uses the inner function make rank to create every card of every suit from 2 - Ace */
+class Deck{
+    constructor(suits,ranks){
+        this.suits = [...suits];
+        this.ranks = [...ranks];
+        this.deck = this.makeDeck;
     }
-    deck = deck2;
-    return deck;
+    makeDeck(){
+        this.ranks.forEach(rank => makeRank(rank));
+
+        function makeRank(rank){
+                this.suits.forEach(suit => makeCard(suit))
+        }
+    }
+    shuffleDeck(deck){
+        let deck2 = [];
+        let iterationLength = deck.length;
+        for(let i = 0; i < iterationLength; i++){
+            let destination = Math.floor(Math.random()*(deck.length-1));
+            deck2.push[deck[destination]];
+        }
+        deck = deck2;
+        return deck;
+    }
+
+
 }
+class Game{
+    players = [];
+    board = [];
+}
+
+class Players{
+    
+}
+
 function dealDeck(deck){
 
     shuffleDeck(deck);
