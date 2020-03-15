@@ -107,44 +107,48 @@ class Deck{
         shuffleDeck(this.deck);
         let playerDeck = deck.slice(0,26);
         let computerDeck = deck.slice(26,52);
-        deck = [playerDeck,computerDeck];
-        return deck
+        this.deck = [playerDeck,computerDeck];
+        return this.deck
     }
     
 
 
 }
-class Players{
+class Player{
     constructor(name){
         this.name = name;
-        this.hand = [];
+        this.deck = [];
+        this.hasLost = false;
     }
-    takeCards(targetDeck, handSize){
-        let hand = []
-        for (let i = 0; i < handSize; i++){
-            hand.push(targetDeck.pop)
+    playCard(){
+        if (this.deck.length == 0){
+            this.hasLost = true;
+            return; 
         }
-        return hand;
+        return this.deck.pop();
+    }
+    takeCards(cards){
+        this.deck.push(...cards);
     }
 }
 class WarGame{
     constructor(){
-        this.players = [];
-        this.board = [];
         let suits = ["Spades","Hearts","Diamonds","Clubs"];
         let ranks = [2,3,4,5,6,7,8,9,10,11,12,13,14]
-        this.deck  = new Deck(suits, ranks);
+        warDeck  = new Deck(suits, ranks);
+        warDeck = warDeck.dealDeck();
+        let p1 = new Player("Player 1");
+        let p2 = new Player("Player 2");
+        p1.deck = warDeck[0];
+        p2.deck = warDeck[1];
+        
+        this.board = [];
+        
+        this.players = [p1,p2];
+        
+        
+    }
+    playRound(){
+
     }
 }
-
-takeCards(targetDeck, handSize){
-    let hand = []
-    for (let i = 0; i < handSize; i++){
-        hand.push(targetDeck.pop)
-    }
-    return hand;
-}
-
-function 
-
-function 
