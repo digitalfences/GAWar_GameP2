@@ -150,11 +150,22 @@ class WarGame{
         this.board = [];
         this.players = [p1,p2];
         this.gameOver = false;
-        console.log(this.players);
+        this.main();
+
     }
     main(){
         while(this.gameOver == false){
             this.playRound();
+        }
+        console.log("Game completed")
+        if(p1.hasLost){
+            console.log(p2. name + " Wins!");
+        }
+        else if(p2.hasLost){
+            console.log(p1.name + " Wins!");
+        }
+        else{
+            console.log("War... War never changes. We send young people out to fight and die and for what? There is no question of winning a war. Only whether you can come back from what you've lost.");
         }
     }
 
@@ -166,17 +177,51 @@ class WarGame{
     playRound(){
 
         let index1 = this.board.push(p1.playCard()) -1;
-        if(p1.hasLost == true){
+        let index2 = this.board.push(p2.playCard()) -1;
+        if(p1.hasLost == true||p2.hasLost == true){
             this.endGame();
             return;
         }
-        let index2 = this.board.push(p2.playCard()) -1;
-        if (this.board[index1].rank == this.board[index2].rank){
+        if(this.board[index1].rank > this.board[index2].rank){
+            p1.takeCards(this.board);
+            while(this.board.length > 0){
+                this.board.pop();
+            }
+            return;
+        }
+        else if(this.board[index1].rank > this.board[index2].rank){
+            p2.takeCard(this.board);
+            while(this.board.length > 0){
+                this.board.pop();
+            }
+            return;
+        }
+        else{
             war();
+            return;
         }
     }
     war(){
-        this.board.push(p1)
+        this.board.push(p1.playCard())
+        this.board.push(p2.playCard())
+        if(p1.hasLost == true||p2.hasLost == true){
+            this.endGame();
+            return;
+        }
+        this.board.push(p1.playCard())
+        this.board.push(p2.playCard())
+        if(p1.hasLost == true||p2.hasLost == true){
+            this.endGame();
+            return;
+        }
+        this.board.push(p1.playCard())
+        this.board.push(p2.playCard())
+        if(p1.hasLost == true||p2.hasLost == true){
+            this.endGame();
+            return;
+        }
+        return;
+
     }
     addCardsToBoard(cards){
         this.board.push(...cards);

@@ -31,8 +31,10 @@
     
   </body>
   <script>
+        let warGame;
         function clickHandler(){
-            const warGame = new WarGame();
+            
+            warGame = new WarGame();
             array = document.getElementsByClassName("hidden");
             for (let i = 0; i < array.length;i++){
               array[i].style.display = "none";
