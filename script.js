@@ -131,7 +131,7 @@ class Player{
             this.hasLost = true;
             return; 
         }
-        return this.deck.pop();
+        return this.deck.shift();
     }
     takeCards(cards){
         this.deck.push(...cards);
