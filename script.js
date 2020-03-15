@@ -84,29 +84,35 @@ class Deck{
     constructor(suits,ranks){
         this.suits = [...suits];
         this.ranks = [...ranks];
-        this.deck = this.makeDeck;
+        this.deck = [];
+        this.makeDeck();
     }
+    makeCard(rank,suit){
+            this.deck.push(new Card(rank,suit));
+        }
+    makeRank(rank){
+                this.suits.forEach(suit => this.makeCard(rank,suit))
+        }
     makeDeck(){
-        this.ranks.forEach(rank => makeRank(rank));
-
-        function makeRank(rank){
-                this.suits.forEach(suit => makeCard(suit))
-        }
+        this.ranks.forEach(rank => this.makeRank(rank));
     }
+    /* The Fisher Yates shuffle algorithm as explained here
+    https://www.frankmitchell.org/2015/01/fisher-yates/ */
     shuffleDeck(){
-        let deck2 = [];
-        let iterationLength = this.deck.length;
-        for(let i = 0; i < iterationLength; i++){
-            let destination = Math.floor(Math.random()*(this.deck.length-1));
-            deck2.push[this.deck[destination]];
+        let temp = null;
+        let j = 0;
+        for(let i = this.deck.length -1; i > 0; i-=1){
+            j = Math.floor(Math.random()*(i + 1));
+            temp = this.deck[i];
+            this.deck[i]= this.deck[j];
+            this.deck[j] = temp;
+        
         }
-        this.deck = deck2;
-        return this.deck;
     }
     dealDeck(){
-        shuffleDeck(this.deck);
-        let playerDeck = deck.slice(0,26);
-        let computerDeck = deck.slice(26,52);
+        this.shuffleDeck();
+        let playerDeck = this.deck.slice(0,26);
+        let computerDeck = this.deck.slice(26,52);
         this.deck = [playerDeck,computerDeck];
         return this.deck
     }
@@ -135,17 +141,19 @@ class WarGame{
     constructor(){
         let suits = ["Spades","Hearts","Diamonds","Clubs"];
         let ranks = [2,3,4,5,6,7,8,9,10,11,12,13,14]
-        warDeck  = new Deck(suits, ranks);
+        let warDeck  = new Deck(suits, ranks);
+        console.log(warDeck);
         warDeck = warDeck.dealDeck();
         let p1 = new Player("Player 1");
         let p2 = new Player("Player 2");
+        console.log(warDeck);
         p1.deck = warDeck[0];
         p2.deck = warDeck[1];
         
         this.board = [];
         
         this.players = [p1,p2];
-        
+        console.log(this.players);
         
     }
     playRound(){
