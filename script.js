@@ -142,21 +142,46 @@ class WarGame{
         let suits = ["Spades","Hearts","Diamonds","Clubs"];
         let ranks = [2,3,4,5,6,7,8,9,10,11,12,13,14]
         let warDeck  = new Deck(suits, ranks);
-        console.log(warDeck);
         warDeck = warDeck.dealDeck();
         let p1 = new Player("Player 1");
         let p2 = new Player("Player 2");
-        console.log(warDeck);
         p1.deck = warDeck[0];
         p2.deck = warDeck[1];
-        
         this.board = [];
-        
         this.players = [p1,p2];
+        this.gameOver = false;
         console.log(this.players);
-        
     }
+    main(){
+        while(this.gameOver == false){
+            this.playRound();
+        }
+    }
+
+    endGame(){
+        this.gameOver = true;
+        return;
+    }
+
     playRound(){
 
+        let index1 = this.board.push(p1.playCard()) -1;
+        if(p1.hasLost == true){
+            this.endGame();
+            return;
+        }
+        let index2 = this.board.push(p2.playCard()) -1;
+        if (this.board[index1].rank == this.board[index2].rank){
+            war();
+        }
+    }
+    war(){
+        this.board.push(p1)
+    }
+    addCardsToBoard(cards){
+        this.board.push(...cards);
+    }
+    addCardsToPlayerDeck(player){
+        player.deck.push(...this.board);
     }
 }
