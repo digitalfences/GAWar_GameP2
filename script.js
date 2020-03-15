@@ -61,20 +61,20 @@ class Card{
         this.suit = suit;
         if (rank > 10){
             if( rank == 11){
-                name = "Jack of " + suit;
+                this.name = "Jack of " + suit;
             }
             else if (rank == 12){
-            name = "Queen of " + suit;
+            this.name = "Queen of " + suit;
          }
             else if (rank == 13){
-                name = "King of " + suit;
+                this.name = "King of " + suit;
             }
             else{
-                name = "Ace of " + suit;
+                this.name = "Ace of " + suit;
             }
         }
         else{
-            name = rank + " of " + suit;
+            this.name = rank + " of " + suit;
         }
     }
 }
@@ -93,41 +93,58 @@ class Deck{
                 this.suits.forEach(suit => makeCard(suit))
         }
     }
-    shuffleDeck(deck){
+    shuffleDeck(){
         let deck2 = [];
-        let iterationLength = deck.length;
+        let iterationLength = this.deck.length;
         for(let i = 0; i < iterationLength; i++){
-            let destination = Math.floor(Math.random()*(deck.length-1));
-            deck2.push[deck[destination]];
+            let destination = Math.floor(Math.random()*(this.deck.length-1));
+            deck2.push[this.deck[destination]];
         }
-        deck = deck2;
-        return deck;
+        this.deck = deck2;
+        return this.deck;
     }
-
-
-}
-class Game{
-    players = [];
-    board = [];
-}
-
-class Players{
+    dealDeck(){
+        shuffleDeck(this.deck);
+        let playerDeck = deck.slice(0,26);
+        let computerDeck = deck.slice(26,52);
+        deck = [playerDeck,computerDeck];
+        return deck
+    }
     
+
+
+}
+class Players{
+    constructor(name){
+        this.name = name;
+        this.hand = [];
+    }
+    takeCards(targetDeck, handSize){
+        let hand = []
+        for (let i = 0; i < handSize; i++){
+            hand.push(targetDeck.pop)
+        }
+        return hand;
+    }
+}
+class WarGame{
+    constructor(){
+        this.players = [];
+        this.board = [];
+        let suits = ["Spades","Hearts","Diamonds","Clubs"];
+        let ranks = [2,3,4,5,6,7,8,9,10,11,12,13,14]
+        this.deck  = new Deck(suits, ranks);
+    }
 }
 
-function dealDeck(deck){
-
-    shuffleDeck(deck);
-    let playerDeck = deck.slice(0,26);
-    let computerDeck = deck.slice(26,52);
-    deck = [playerDeck,computerDeck];
-    return deck
-}
-
-function takeCards(targetDeck, handSize){
+takeCards(targetDeck, handSize){
     let hand = []
     for (let i = 0; i < handSize; i++){
         hand.push(targetDeck.pop)
     }
     return hand;
 }
+
+function 
+
+function 
