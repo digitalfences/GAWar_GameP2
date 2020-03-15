@@ -154,6 +154,8 @@ class WarGame{
 
     }
     main(){
+        let p1 = this.players[0];
+        let p2 = this.players[1];
         while(this.gameOver == false){
             this.playRound();
         }
@@ -175,33 +177,50 @@ class WarGame{
     }
 
     playRound(){
-
+        let p1 = this.players[0];
+        let p2 = this.players[1];
         let index1 = this.board.push(p1.playCard()) -1;
         let index2 = this.board.push(p2.playCard()) -1;
         if(p1.hasLost == true||p2.hasLost == true){
             this.endGame();
             return;
         }
+        console.log(p1.name + " played " + this.board[index1].name);
+        console.log(p2.name + " played " + this.board[index2].name);
         if(this.board[index1].rank > this.board[index2].rank){
+            
+            /*Print a message for each "round" of the game showing the cards played by each user, 
+            who won the round, and how many cards each player now has.
+            */
+            console.log(p1.name + " wins round.");
             p1.takeCards(this.board);
+            console.log(p1.name + " has " + p1.deck.length + " cards");
+            console.log(p2.name + " has " + p2.deck.length + " cards");
             while(this.board.length > 0){
                 this.board.pop();
             }
             return;
         }
-        else if(this.board[index1].rank > this.board[index2].rank){
-            p2.takeCard(this.board);
+        else if(this.board[index1].rank < this.board[index2].rank){
+            
+            console.log(p2.name + " wins round.");
+            p2.takeCards(this.board);
+            console.log(p1.name + " has " + p1.deck.length + " cards");
+            console.log(p2.name + " has " + p2.deck.length + " cards");
             while(this.board.length > 0){
                 this.board.pop();
             }
             return;
         }
         else{
-            war();
+            console.log("War! Three Cards each staked face down.");
+            this.war();
             return;
         }
     }
     war(){
+        let p1 = this.players[0];
+        let p2 = this.players[1];
         this.board.push(p1.playCard())
         this.board.push(p2.playCard())
         if(p1.hasLost == true||p2.hasLost == true){
