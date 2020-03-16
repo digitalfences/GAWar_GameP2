@@ -138,13 +138,13 @@ class Player{
     }
 }
 class WarGame{
-    constructor(){
+    constructor(name1,name2){
         let suits = ["Spades","Hearts","Diamonds","Clubs"];
         let ranks = [2,3,4,5,6,7,8,9,10,11,12,13,14]
         let warDeck  = new Deck(suits, ranks);
         warDeck = warDeck.dealDeck();
-        let p1 = new Player("Player 1");
-        let p2 = new Player("Player 2");
+        let p1 = new Player(name1);
+        let p2 = new Player(name2);
         p1.deck = warDeck[0];
         p2.deck = warDeck[1];
         this.board = [];

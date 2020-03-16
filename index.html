@@ -8,7 +8,7 @@
 
   </head>
   <body>
-    <h1>Welcome to the game of war!</p>
+    <h1>Welcome to the game of war!</h1></p>
     <div class="content hidden">  
     <h1>Instructions</h1>  
     <p class="instructions hidden">
@@ -21,24 +21,35 @@
       5. If a player finishes their cards during a war without having enough cards to finish the war then he loses immediately.<br>
     </p>
     </div>
-    
+    <div class="card-display shown">
+      <img class="card-one" src="./img/PNG-cards-1.3/black_joker.png">
+      <img class="card-two" src="./img/PNG-cards-1.3/black_joker.png">
+    </div>
     <div class="button-friends hidden">
       <button type ="button" onclick="clickHandler()">Start Button</button>
-      <button type ="button" onclick="nameHandler()">Set Player Name</button>
-      <button type ="button" onclick="nameHandler()">Set Computer Name</button>
+      <button type ="button" onclick="nameHandler1()">Set Player Name</button>
+      <button type ="button" onclick="nameHandler2()">Set Computer Name</button>
     </div>
     
     
   </body>
   <script>
         let warGame;
+        let name1 = "Player 1";
+        let name2 = "Player 2";
         function clickHandler(){
-            
-            warGame = new WarGame();
+            warGame = new WarGame(name1,name2);
             array = document.getElementsByClassName("hidden");
             for (let i = 0; i < array.length;i++){
               array[i].style.display = "none";
             }
+            document.getElementsByClassName("shown")[0].style.display = "flex";
+        }
+        function nameHandler1(){
+            name1 = window.prompt();
+        }
+        function nameHandler2(){
+            name2 = window.prompt();
         }
     </script>
   <script src = "./script.js">
